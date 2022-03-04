@@ -18,7 +18,7 @@ public class pages {
 
     @GetMapping("/blog")
     public String blog(){
-        return "about";
+        return "blog";
     }
 
     @GetMapping("/contact")

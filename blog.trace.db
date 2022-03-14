@@ -143,3 +143,12 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 55 more
+2022-03-14 12:02:21 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM BLOG CATEGORIES COMMENTS[*] CONTACTS LINKS TEAMS USERS"; SQL statement:
+SELECT * FROM BLOG CATEGORIES COMMENTS CONTACTS LINKS TEAMS USERS [42000-200]
+2022-03-14 12:03:25 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (ADMIN_CONTACTS: ""ID"" INTEGER NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."ADMIN_CONTACTS"("ID","ADDRESS","EMAIL","MAP","NUMBER")VALUES(?,?,?,?,?) [22018-200]
+2022-03-14 12:03:25 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (ADMIN_CONTACTS: ""ID"" INTEGER NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."ADMIN_CONTACTS"("ID","ADDRESS","EMAIL","MAP","NUMBER")VALUES(?,?,?,?,?) [22018-200]

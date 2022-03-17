@@ -16,7 +16,7 @@ public class blogService {
         return blogRepository.save(blog);
     }
 
-    public List<blog> getBlog(){
+    public List<blog> getAll(){
         return blogRepository.findAll();
     }
 

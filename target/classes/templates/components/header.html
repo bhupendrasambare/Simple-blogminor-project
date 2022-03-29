@@ -40,5 +40,26 @@
                 </div>
             </nav>
         </header>
+
+        <footer th:fragment="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="social-icons">
+                            <li th:each="links:${link}">
+                                <a target="_blank" th:href="${links.link}" th:text="${links.name}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                            <p>Copyright 2020 Stand Blog Co.
+
+                                | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 </body>
 </html>

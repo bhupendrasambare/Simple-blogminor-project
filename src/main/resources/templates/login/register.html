@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" th:href="@{/login/style.css}">
+</head>
+<body>
+
+<div class="main">
+    <!-- Sign up form -->
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form method="POST" th:action="@{/register}" class="register-form" id="register-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="name" id="name" placeholder="Your Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="email" name="email" id="email" placeholder="Your Email..."/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="password" name="password" id="password" placeholder="Your Password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="bio" id="bio" placeholder="About yourself"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="date" name="dob" id="dob" placeholder="DOB YYYY-MM-DD"/>
+                        </div>
+                        <div class="form-group">
+                            Select your Interest
+                            <label for="categories"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <select name="categories" id="categories" style="background-color: white;width: 100px; height: height: 30px;border-radius: 10px; padding: 5px;" >
+                                <option value="volvo" th:each="categorie:${categories}" th:text="${categorie.name}" th:value="${categorie.id}">Volvo</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img th:src="@{/login/images/signup-image.jpg}" alt="sing up image"></figure>
+                    <a th:href="@{/login}" class="signup-image-link">I am already member</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>

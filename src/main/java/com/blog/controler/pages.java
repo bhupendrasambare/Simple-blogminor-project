@@ -32,6 +32,7 @@ public class pages {
     @GetMapping("/blog")
     public String blog(Model model){
         model.addAttribute("link",linkService.getAll());
+        model.addAttribute("categories",categoriesService.getall());
         return "blog";
     }
 

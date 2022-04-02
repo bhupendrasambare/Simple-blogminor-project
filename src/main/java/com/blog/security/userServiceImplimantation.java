@@ -62,6 +62,10 @@ public class userServiceImplimantation implements usersService {
         return usersRepository.save(user);
     }
 
+    public users findByEmail(String email){
+        return usersRepository.findByEmail(email);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         users user  = usersRepository.findByEmail(username);

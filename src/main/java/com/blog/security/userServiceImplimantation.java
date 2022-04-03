@@ -2,8 +2,10 @@ package com.blog.security;
 
 import com.blog.dto.userDTO;
 import com.blog.model.Role;
+import com.blog.model.categories;
 import com.blog.model.users;
 import com.blog.repository.usersRepository;
+import com.blog.service.categoriesService;
 import com.blog.service.usersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +21,10 @@ public class userServiceImplimantation implements usersService {
     @Autowired
     usersRepository usersRepository;
 
-    public users update(users a){
+    @Autowired
+    categoriesService categoriesService;
+
+    public users update(userDTO a){
         users b = usersRepository.findById(a.getId()).get();
         if(a.getName() != b.getName()){
             b.setName(a.getName());
@@ -27,8 +32,8 @@ public class userServiceImplimantation implements usersService {
         if(a.getBio() != b.getBio()){
             b.setBio(a.getBio());
         }
-        if(a.getCategories() != b.getCategories()){
-            b.setCategories(a.getCategories());
+        if(a.getCategories_id() != b.getCategories().getId()){
+            b.setCategories(categoriesService.getById(a.getCategories_id()));
         }
         if(a.getDob() != b.getDob()){
             b.setDob(a.getDob());
@@ -50,16 +55,20 @@ public class userServiceImplimantation implements usersService {
     }
 
     public users getById(int id){
-        return usersRepository.getById(id);
+        Optional<users> user = usersRepository.findById(id);
+        if(user.isPresent()){
+            return user.get();
+        }
+        return null;
     }
 
     public void delete(int id){
         usersRepository.deleteById(id);
     }
 
-    @Override
     public users create(userDTO user) {
-        return usersRepository.save(user);
+        users u = new users(user.getId(),user.getName(),user.getEmail(),user.getPassword(),categoriesService.getById(user.getCategories_id()),user.getBio(),user.getImage(),user.getDob(),null);
+        return usersRepository.save(u);
     }
 
     public users findByEmail(String email){

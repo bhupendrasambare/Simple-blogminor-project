@@ -5,13 +5,11 @@ import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -19,9 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class securityConfiguration extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    UserDetailsService userDetailsService;
 
     @Autowired
     usersService usersService;
@@ -47,6 +42,7 @@ public class securityConfiguration extends WebSecurityConfigurerAdapter {
                     "/blog",
                     "/contact",
                     "/register",
+                    "/account/**",
                     "/blog/**",
                     "/css/**",
                     "/js/**",
@@ -58,7 +54,7 @@ public class securityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().
                 antMatchers("/h2-console/**").permitAll()
                 .and()
-                .csrf().ignoringAntMatchers("/h2-console/**","/contact","/contact/**")
+                .csrf().ignoringAntMatchers("/h2-console/**","/contact","/contact/**","/edit")
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()

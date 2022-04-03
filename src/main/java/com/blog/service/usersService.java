@@ -6,6 +6,4 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface usersService extends UserDetailsService {
 
-    public users create(userDTO user);
-
 }

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
-    <title>Stand Blog - User Page</title>
+    <title>Stand Blog - User account</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -47,8 +47,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-content">
-                        <h4 th:text="${'Welcome '+user.name}"></h4>
-                        <h2>let’s Share something Awesome</h2>
+                        <h4 th:text="${user.name}"></h4>
+                        <h2>Know Better about me</h2>
                     </div>
                 </div>
             </div>
@@ -66,10 +66,7 @@
             <div class="col-lg-4">
                 <div class="sidebar-item contact-information">
                     <div class="sidebar-heading">
-                        <h2>Account information<br>
-                            <a th:href="@{/logout}"><button class="btn btn-dark">Logout</button></a>
-                            <a th:href="@{/edit}"><button class="ml-2 btn btn-warning">Edit details</button></a>
-                        </h2>
+                        <h2>Account information</h2>
                     </div>
                     <div class="sidebar-heading">
                         <span>EMAIL ADDRESS</span><br>
@@ -86,10 +83,6 @@
                     <div class="sidebar-heading">
                         <span>Intrest</span><br>
                         <h2 th:text="${user.categories.name}"></h2>
-                    </div>
-                    <div class="sidebar-heading">
-                        <span>Sharable link</span><br>
-                        <a th:href="@{${'/account/'+user.id}}" target="_blank"><button class="btn btn-primary">Link</button></a>
                     </div>
                 </div>
             </div>

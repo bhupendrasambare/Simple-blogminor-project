@@ -33,8 +33,8 @@ public class blogService {
         if(a.getCategories() != b.getCategories()){
             a.setCategories(b.getCategories());
         }
-        if(a.getData() != b.getData()){
-            a.setData(b.getData());
+        if(a.getImage() != b.getImage()){
+            a.setImage(b.getImage());
         }
         if(a.getDate() != b.getDate()){
             a.setDate(b.getDate());

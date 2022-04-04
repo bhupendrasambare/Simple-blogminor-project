@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Service
 public class operations {
-     String ImageFolder = "./classes/static/";
+     private final String ImageFolder = new ClassPathResource("static/images/").getFile().getAbsolutePath();
 
     public String getdate(){
         Date date = new Date();

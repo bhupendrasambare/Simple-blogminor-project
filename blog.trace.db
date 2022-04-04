@@ -306,3 +306,21 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 2022-04-03 16:53:59 jdbc[14]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE *[*] FROM USERS"; expected "identifier"; SQL statement:
 Delete * from users [42001-200]
+2022-04-04 08:03:23 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "blog" not found; SQL statement:
+ALTER TABLE "blog" DROP "data" [42102-200]
+2022-04-04 11:43:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DATA VARCHAR(255)": "'This is a trial blog so please don''t mind the spelling mistake although due to lack of time I am adding data by reaping this s... (860)"; SQL statement:
+insert into paragraph (blog_id, data, id) values (?, ?, ?) [22001-200]
+2022-04-04 11:45:34 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE *[*] FROM BLOG"; expected "identifier"; SQL statement:
+delete * FROM BLOG [42001-200]
+2022-04-04 11:45:53 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE *[*] FROM BLOG WHERE VIEWS = 0"; expected "identifier"; SQL statement:
+delete * FROM BLOG where views = 0 [42001-200]
+2022-04-04 11:46:01 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE *[*] FROM BLOG WHERE VIEWS = 0"; expected "identifier"; SQL statement:
+DELETE * FROM BLOG where views = 0 [42001-200]
+2022-04-04 11:48:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DATA VARCHAR(255)": "'This is a trial blog so please don^t mind the spelling mistake although due to lack of time I am adding data by reaping this sa... (860)"; SQL statement:
+insert into paragraph (blog_id, data, id) values (?, ?, ?) [22001-200]

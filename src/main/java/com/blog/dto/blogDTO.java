@@ -19,7 +19,7 @@ public class blogDTO {
     int id;
     String name;
     String hashtag;
-    String data;
+    String image;
     String date;
     int views;
     int categories_id;

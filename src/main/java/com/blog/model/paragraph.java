@@ -10,21 +10,17 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class blog {
+public class paragraph {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String name;
-    String hashtag;
-    String image;
-    String date;
-    int views;
 
     @ManyToOne
-    @JoinColumn(name = "categories_id")
-    categories categories;
+    @JoinColumn(name = "blog_id")
+    private blog blog;
 
-    @ManyToOne
-    @JoinColumn(name = "users_id")
-    users users;
+    @Lob
+    String data;
+
 }

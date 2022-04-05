@@ -5,7 +5,9 @@ import com.blog.repository.blogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class blogService {
@@ -21,7 +23,11 @@ public class blogService {
     }
 
     public blog getBlogById(int id){
-        return  blogRepository.getById(id);
+        Optional<blog> blog = blogRepository.findById(id);
+        if(blog.isPresent()){
+            return blog.get();
+        }
+        return null;
     }
 
     public void delete(int id){
@@ -48,4 +54,19 @@ public class blogService {
         return blogRepository.save(a);
     }
 
+    public List<blog> getByCategories(String name){
+        return blogRepository.findByCategories_NameIgnoreCase(name);
+    }
+
+    public List<blog> getRecent(){
+        List<blog> recent = new ArrayList<blog>();
+        int i=0;
+        for(com.blog.model.blog b : blogRepository.findAll()){
+            recent.add(b);i++;
+            if(i>=6) {
+                break;
+            }
+        }
+        return recent;
+    }
 }

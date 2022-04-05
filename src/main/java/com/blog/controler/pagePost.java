@@ -47,13 +47,6 @@ public class pagePost {
     @Autowired
     categoriesService categoriesService;
 
-    @GetMapping("/add")
-    public String blog(Model model){
-        model.addAttribute("link",linkService.getAll());
-        model.addAttribute("categories",categoriesService.getall());
-        model.addAttribute("heading","Add New Blog");
-        return "addBlog";
-    }
 
     @PostMapping("/add")
     public String addBlog(@RequestParam("name")String name,
@@ -67,8 +60,6 @@ public class pagePost {
         blog blog = new blog(0,name,tag,imgname,operations.getdate(),0,categoriesService.getById(categories),user);
         blog nblog = blogService.create(blog);
         for (String p:par) {
-            p = p.replace("'","^");
-            p = p.replace('"','*');
             paragraphService.create(new paragraph(0,nblog,p));
         }
         return "redirect:/user";

@@ -14,14 +14,26 @@ public class paragraphService {
     paragraphRepository paragraphRepository;
 
     public List<paragraph> getall(){
-        return paragraphRepository.findAll();
+        List<paragraph> par = paragraphRepository.findAll();
+        for(int i=0;i<par.size();i++){
+            par.get(i).setData(par.get(i).getData().replace("^","'"));
+            par.get(i).setData(par.get(i).getData().replace('*','"'));
+        }
+        return par;
     }
 
     public paragraph create(paragraph paragraph){
+        paragraph.setData(paragraph.getData().replace("'","^"));
+        paragraph.setData(paragraph.getData().replace('"','*'));
         return paragraphRepository.save(paragraph);
     }
 
     public List<paragraph> getByBlog_id(int id){
-        return paragraphRepository.findByBlog_Id(id);
+        List<paragraph> par = paragraphRepository.findByBlog_Id(id);
+        for(int i=0;i<par.size();i++){
+            par.get(i).setData(par.get(i).getData().replace("^","'"));
+            par.get(i).setData(par.get(i).getData().replace('*','"'));
+        }
+        return par;
     }
 }

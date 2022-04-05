@@ -3,6 +3,7 @@ package com.blog.controler;
 import com.blog.dto.userDTO;
 import com.blog.model.users;
 import com.blog.security.userServiceImplimantation;
+import com.blog.service.blogService;
 import com.blog.service.linkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,12 +24,16 @@ public class account {
     @Autowired
     com.blog.service.categoriesService categoriesService;
 
+    @Autowired
+    com.blog.service.blogService blogService;
+
     @GetMapping("/user")
     public String user(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         model.addAttribute("user",userService.findByEmail(currentUserName));
         model.addAttribute("link",linkService.getAll());
+        model.addAttribute("blog",blogService.getByEmail(currentUserName));
         return "user";
     }
 
@@ -39,6 +44,7 @@ public class account {
         }
         model.addAttribute("user",userService.getById(id));
         model.addAttribute("link",linkService.getAll());
+        model.addAttribute("blog",blogService.getByEmail(userService.getById(id).getEmail()));
         return "account";
     }
 

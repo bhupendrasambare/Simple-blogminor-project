@@ -69,4 +69,8 @@ public class blogService {
         }
         return recent;
     }
+
+    public List<blog> getByEmail(String email){
+        return  blogRepository.findByUsers_EmailIgnoreCase(email);
+    }
 }

@@ -58,8 +58,8 @@ public class blog {
         }
         model.addAttribute("link",linkService.getAll());
         model.addAttribute("categories",categoriesService.getall());
-        model.addAttribute("heading","RECENT POSTS");
-        model.addAttribute("subheading","OUR RECENT BLOG ENTRIES");
+        model.addAttribute("heading","POSTS RELATED TO  "+name);
+        model.addAttribute("subheading","OUR BLOG ENTRIES");
         model.addAttribute("blog",blogService.getByCategories(name));
         model.addAttribute("recent",blogService.getRecent());
         return "blog";

@@ -31,6 +31,10 @@ public class commentsService {
         return commentsRepository.findById(id).get();
     }
 
+    public List<comments> getBuBlog(int id){
+        return commentsRepository.findByBlog_Id(id);
+    }
+
     public void delete(int id){
         commentsRepository.deleteById(id);
     }

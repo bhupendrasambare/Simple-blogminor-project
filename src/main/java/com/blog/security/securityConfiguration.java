@@ -55,7 +55,7 @@ public class securityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().
                 antMatchers("/h2-console/**").permitAll()
                 .and()
-                .csrf().ignoringAntMatchers("/h2-console/**","/contact","/contact/**","/edit","/add")
+                .csrf().ignoringAntMatchers("/h2-console/**","/contact","/contact/**","/edit","/add","/comment/**")
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()

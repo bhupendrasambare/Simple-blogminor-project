@@ -1,15 +1,17 @@
 package com.blog.controler;
 
+import com.blog.model.comments;
 import com.blog.model.paragraph;
-import com.blog.service.blogService;
-import com.blog.service.categoriesService;
-import com.blog.service.linkService;
-import com.blog.service.paragraphService;
+import com.blog.security.userServiceImplimantation;
+import com.blog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -28,6 +30,15 @@ public class blog {
     @Autowired
     paragraphService paragraphService;
 
+    @Autowired
+    commentsService commentsService;
+
+    @Autowired
+    operations operations;
+
+    @Autowired
+    userServiceImplimantation usersService;
+
     @GetMapping("/blog/{id}")
     public String blogPage(@PathVariable("id")int id,Model model){
         model.addAttribute("link",linkService.getAll());
@@ -38,6 +49,7 @@ public class blog {
         model.addAttribute("blog",blogService.getBlogById(id));
         model.addAttribute("paragraphs",paragraphService.getByBlog_id(id));
         model.addAttribute("recent",blogService.getRecent());
+        model.addAttribute("comments",commentsService.getBuBlog(id));
         return "post-details";
     }
 
@@ -63,5 +75,14 @@ public class blog {
         model.addAttribute("blog",blogService.getByCategories(name));
         model.addAttribute("recent",blogService.getRecent());
         return "blog";
+    }
+
+    @PostMapping("/comment/{id}")
+    public String comment(@PathVariable("id")int id,
+                          @RequestParam("subject") String subject,
+                          @RequestParam("message")String message){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        commentsService.create(new comments(0,message,operations.getdate(),blogService.getBlogById(id), usersService.findByEmail(username)));
+        return "redirect:/blog/"+id;
     }
 }

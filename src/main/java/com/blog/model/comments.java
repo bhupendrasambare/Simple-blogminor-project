@@ -14,9 +14,16 @@ public class comments {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    int blog;
-    int user;
+
     @Lob
     String text;
     String date;
+
+    @ManyToOne
+    @JoinColumn(name = "blog_id")
+    blog blog;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    users users;
 }

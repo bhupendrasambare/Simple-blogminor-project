@@ -98,17 +98,11 @@
                     </div>
                     <div class="content">
                       <ul>
-                        <li>
-                          <div class="right-content">
-                            <h4>Charles Kate<span>May 16, 2020</span></h4>
-                            <p>Fusce ornare mollis eros. Duis et diam vitae justo fringilla condimentum eu quis leo. Vestibulum id turpis porttitor sapien facilisis scelerisque. Curabitur a nisl eu lacus convallis eleifend posuere id tellus.</p>
-                          </div>
-                        </li>
 
-                        <li>
+                        <li th:each="com : ${comments}">
                           <div class="right-content">
-                            <h4>Belisimo Mama<span>May 16, 2020</span></h4>
-                            <p>Nullam nec pharetra nibh. Cras tortor nulla, faucibus id tincidunt in, ultrices eget ligula. Sed vitae suscipit ligula. Vestibulum id turpis volutpat, lobortis turpis ac, molestie nibh.</p>
+                            <a th:href="@{${'/account/'+com.users.id}}"><h4 th:text="${com.users.name + ' '+ com.date }"></h4></a>
+                            <p th:text="${com.text}"></p>
                           </div>
                         </li>
 
@@ -122,7 +116,7 @@
                       <h2>Your comment</h2>
                     </div>
                     <div class="content">
-                      <form id="comment" action="#" method="post">
+                      <form id="comment" th:action="@{${'/comment/' +blog.id}}" method="post">
                         <div class="row">
 
                           <div class="col-md-12 col-sm-12">

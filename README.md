@@ -25,16 +25,16 @@ Spring boot blog is a multi-user person-to-person mode ot content sharing platfo
 > User To User Communication
 
 
-## Rquirements:
+## Requirements:
 * apache maven 3.8.4
 
 * java jdk 8 or 8+
 
 ## Start project
 
->unzip the project
+> Unzip the project
 >
->locate the folder in cmd/terminal
+> Locate the folder in cmd/terminal
 >
 >run mvn spring-boot:run
 
